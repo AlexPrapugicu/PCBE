@@ -13,11 +13,14 @@ public class Buyer extends Person {
 
     }
 
-    public void addDemand(Demand demand) {
+    public void addDemand(double price, int amount) {
+        Demand demand = new Demand(price,amount,this);
         new Thread(()-> {
-            synchronized (this.market) {
-                this.market.addDemand(demand);
-            }
+                try {
+                    this.market.addDemand(demand);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             Thread.currentThread().interrupt();
         }).start();
     }

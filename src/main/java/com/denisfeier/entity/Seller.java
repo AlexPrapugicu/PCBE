@@ -14,12 +14,13 @@ public class Seller extends Person {
     }
 
     public void addStock(double price, int amount) {
-
         Stock stock = new Stock(price, amount, this);
         new Thread(() -> {
-            synchronized (this.market) {
-                this.market.addStock(stock);
-            }
+                try {
+                    this.market.addStock(stock);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             Thread.currentThread().interrupt();
         }).start();
 

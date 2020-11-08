@@ -14,6 +14,14 @@ public abstract class Person {
     protected final Market market;
     private String id;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public Person(Market market) {
         this.market = market;
         this.id = UUID.randomUUID().toString().replace("-", "");;

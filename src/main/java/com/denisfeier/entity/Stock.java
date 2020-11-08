@@ -9,6 +9,10 @@ public class Stock extends StockElement{
     @Override
     public void use(int count) {
         this.setCount(this.getCount() - count);
-        this.getOwner().addToHistory(this, count);
+        System.out.println("updated stock "
+                + this.getID()
+                + " count: "
+                + this.getCount());
+//        this.getOwner().addToHistory(this, count);
     }
 }
